@@ -1,13 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+
+const result = dotenv.config();
+if (result.error) {
+  throw result.error;
+}
 
 const app = express();
 
 mongoose
-  .connect(
-    "mongodb+srv://dbsa01:Hanoi12345@cluster0.pb7aa.mongodb.net/Cluster0?retryWrites=true&w=majority",
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  )
+  .connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("database connected");
   })
