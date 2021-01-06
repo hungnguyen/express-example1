@@ -1,6 +1,19 @@
 const express = require("express");
+const mongoose = require("mongoose");
 
 const app = express();
+
+mongoose
+  .connect(
+    "mongodb+srv://dbsa01:Hanoi12345@cluster0.pb7aa.mongodb.net/Cluster0?retryWrites=true&w=majority",
+    { useNewUrlParser: true, useUnifiedTopology: true }
+  )
+  .then(() => {
+    console.log("database connected");
+  })
+  .catch((e) => {
+    console.log(e.message);
+  });
 
 app.get("/", (req, res) => res.send("Home Page Route"));
 
